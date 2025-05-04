@@ -1,74 +1,76 @@
-# Shakespeare Word-Level Language Model
+```markdown
+# Shakespeare Character-Wise Language Model
 
-This project implements a word-level language model trained on the works of William Shakespeare. The model is built using PyTorch and learns to generate Shakespearean-style text by predicting the next word in a sequence.
+This project implements a character-level language model trained on the works of William Shakespeare. Built using PyTorch, the model learns to generate Shakespearean-style text one character at a time, capturing the rhythm and structure of classical literature.
 
 ## Overview
 
 This notebook demonstrates:
 
-- Preprocessing of Shakespeare’s text at the word level
-- Vocabulary construction and tokenization
-- Model definition using an embedding layer, GRU, and a linear output layer
-- Training loop with loss tracking
-- Generation of Shakespearean-like text given a seed phrase
+- Character-level preprocessing of Shakespeare’s text  
+- Vocabulary construction and one-hot encoding  
+- A simple neural network using embeddings and GRU layers  
+- Training the model using cross-entropy loss  
+- Generation of character sequences using temperature sampling
 
 ## Features
 
-- Word-level text processing
-- Custom vocabulary class to map words to indices and back
-- GRU-based language model
-- Text generation with temperature sampling
-- Easy-to-follow code structure for educational purposes
+- Character-level modeling for finer control over language style  
+- Custom vocabulary class to map characters to indices and back  
+- GRU-based recurrent neural network  
+- Temperature-controlled text generation  
+- Lightweight and educational implementation
 
 ## Model Architecture
 
-- **Embedding Layer**: Transforms word indices into dense vectors
-- **GRU**: Captures temporal dependencies in word sequences
-- **Linear Layer**: Maps GRU outputs to vocabulary logits
+- **Embedding Layer**: Translates character indices into dense vector representations  
+- **GRU Layer**: Processes sequential character inputs and captures dependencies  
+- **Linear Layer**: Projects GRU output to character logits for prediction
 
 ## Project Structure
 
 ```
-Shekespeare_Word_Lvl.ipynb       # Jupyter Notebook with full implementation
-data/
-└── shakespeare.txt              # Text file containing Shakespeare’s works
+Another_Shakespeare_char_Wise.ipynb   # Jupyter Notebook with full implementation  
+data/  
+└── shakespeare.txt                   # Text file with Shakespeare's works  
 ```
 
 ## Requirements
 
-- Python 3.7+
-- PyTorch
-- NumPy
-- Matplotlib
-- tqdm
+- Python 3.7+  
+- PyTorch  
+- NumPy  
+- tqdm  
 
 Install dependencies with:
 
 ```bash
-pip install torch numpy matplotlib tqdm
+pip install torch numpy tqdm
 ```
 
 ## Training
 
-The model is trained using negative log-likelihood loss. The training loop includes:
+The model is trained using cross-entropy loss. The training loop includes:
 
-- Mini-batch processing
-- Randomized start points for sequences
-- Logging of loss values over time
+- Random sequence extraction from the dataset  
+- Batched training with sequence windows  
+- Periodic loss tracking for monitoring
 
 ## Text Generation
 
-After training, you can generate text by providing a starting prompt:
+After training, generate Shakespearean text by providing a seed string:
 
 ```python
-generate(model, "To be or not to be", max_new_tokens=50)
+generate(model, "To thine own self be", max_new_tokens=100)
 ```
 
-Adjust the temperature parameter to control randomness in the output.
+The `temperature` parameter can be adjusted to control creativity and randomness.
 
 ## Sample Output
 
 ```
-To be or not to be I know not whence to go
-But though the soul be fled from death's own blow
+To thine own self be true,
+And it must follow, as the night the day,
+Thou canst not then be false to any man.
+```
 ```
