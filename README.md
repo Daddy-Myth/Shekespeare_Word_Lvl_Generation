@@ -1,4 +1,3 @@
-```markdown
 # Shakespeare Character-Wise Language Model
 
 This project implements a character-level language model trained on the works of William Shakespeare. Built using PyTorch, the model learns to generate Shakespearean-style text one character at a time, capturing the rhythm and structure of classical literature.
